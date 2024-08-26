@@ -1,9 +1,6 @@
 package com.example.capstone3.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -29,22 +26,27 @@ public class Student {
 
     @Pattern(regexp = "^(M|F)$")
     @NotEmpty(message = "gender should be not null")
+    @Column(columnDefinition = "varchar(20) not null")
     private String gender;
 
     @NotNull(message = "age should be not null")
+    @Column(columnDefinition = "int not null")
     private Integer age;
 
     @NotEmpty(message = "academic level should be not null")
     @Pattern(regexp = "^(KG|Biggener|Intermediate|High school|Diploma)$")
+    @Column(columnDefinition = "varchar(20) not null")
     private String academicLevel;
 
-
+    @Column(columnDefinition = "boolean")
     private boolean disable;
 
     @NotNull(message = "facility id should be not null")
+    @Column(columnDefinition = "int not null")
     private int facilityId;
 
     @NotEmpty(message = "address should be not null")
+    @Column(columnDefinition = "varchar(20) not null")
     private String address;
 
 
