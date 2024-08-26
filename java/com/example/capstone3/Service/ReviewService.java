@@ -1,5 +1,6 @@
 package com.example.capstone3.Service;
 
+import com.example.capstone3.Api.ApiException;
 import com.example.capstone3.Model.Review;
 import com.example.capstone3.Repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class ReviewService {
         Review r = reviewRepository.findReviewById(id);
         if(r == null)
         {
-//            throw new ApiException("");
+            throw new ApiException("not found");
         }
         r.setComment(review.getComment());
         r.setRate(review.getRate());
@@ -36,7 +37,7 @@ public class ReviewService {
     {
         if(reviewRepository.findReviewById(id) == null)
         {
-            // throw new ApiException("");
+             throw new ApiException("not found");
         }
         reviewRepository.deleteById(id);
     }

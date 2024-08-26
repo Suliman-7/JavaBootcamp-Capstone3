@@ -1,5 +1,6 @@
 package com.example.capstone3.Service;
 
+import com.example.capstone3.Api.ApiException;
 import com.example.capstone3.Model.Facility;
 import com.example.capstone3.Repository.FacilityRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class FacilityService {
         Facility f = facilityRepository.findFacilityById(id);
         if(f == null)
         {
-//            throw new ApiException("");
+            throw new ApiException("not found");
         }
         f.setName(facility.getName());
         f.setType(facility.getType());
@@ -38,7 +39,7 @@ public class FacilityService {
     {
         if(facilityRepository.findFacilityById(id) == null)
         {
-            // throw new ApiException("");
+             throw new ApiException("not found");
         }
         facilityRepository.deleteById(id);
     }
