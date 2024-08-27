@@ -2,8 +2,15 @@ package com.example.capstone3.Repository;
 
 import com.example.capstone3.Model.Captain;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.List;
 
-public interface CaptainRepository extends JpaRepository<Captain,Integer> {
 
-    Captain findCaptainById(Integer id);
+@Repository
+public interface CaptainRepository extends JpaRepository<Captain, Integer> {
+
+
+    public Captain findCaptainById(Integer id);
+
+    List<Captain> findCaptainByVehicle(String vehicle);
 }

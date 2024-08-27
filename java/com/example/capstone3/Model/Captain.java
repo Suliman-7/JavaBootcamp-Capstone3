@@ -1,17 +1,20 @@
 package com.example.capstone3.Model;
 
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
+import java.util.Set;
+
+@Entity
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Captain {
 
     @Id
@@ -44,4 +47,31 @@ public class Captain {
     @Pattern(regexp = "^05\\d*$",message = "Phone number must start with '05' !")
     @Column(columnDefinition = "varchar(10) not null")
     private String phoneNumber;
+
+
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "captain")
+    private Set<Student> students ;
+
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "captain")
+    private Set<Review> reviews ;
+
+
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "captain")
+    private Set<Subscription> subscriptions ;
+
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "captain")
+    private Set<DailyTrip> dailyTrips ;
+
+    @Column(columnDefinition = "double not null ")
+    private double rate = 0 ;
+
+    @OneToOne(cascade = CascadeType.ALL , mappedBy = "captain")
+    private FacilityDeliveryGroup deliveryGroup;
+
+    @OneToOne(cascade = CascadeType.ALL,mappedBy = "captain")
+    private RequestRide requestRide;
+
+
+
+
 }

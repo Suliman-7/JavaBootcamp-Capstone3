@@ -1,5 +1,6 @@
 package com.example.capstone3.Service;
 
+
 import com.example.capstone3.Api.ApiException;
 import com.example.capstone3.Model.DailyTrip;
 import com.example.capstone3.Repository.DailyTripRepository;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+
 public class DailyTripService {
 
     private final DailyTripRepository dailyTripRepository;
@@ -18,16 +20,12 @@ public class DailyTripService {
         return dailyTripRepository.findAll();
     }
 
-    public void addDailyTrip(DailyTrip dailyTrip) {
-        dailyTripRepository.save(dailyTrip);
-    }
 
     public void updateDailyTrip(int id , DailyTrip dailyTrip) {
         DailyTrip dt = dailyTripRepository.findDailyTripById(id);
         if(dt == null) {
             throw new ApiException("trip not found");
         }
-        dt.setCaptainId(dailyTrip.getCaptainId());
         dt.setDestination(dailyTrip.getDestination());
         dt.setPrice(dailyTrip.getPrice());
         dt.setLeaveHour(dailyTrip.getLeaveHour());
@@ -42,4 +40,6 @@ public class DailyTripService {
         }
         dailyTripRepository.delete(dt);
     }
+
+
 }

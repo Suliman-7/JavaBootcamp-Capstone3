@@ -7,10 +7,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/trip")
+
+
 public class DailyTripController {
+
 
     private final DailyTripService dailyTripService;
 
@@ -19,11 +24,6 @@ public class DailyTripController {
         return ResponseEntity.status(200).body(dailyTripService.getAllDailyTrips());
     }
 
-    @PostMapping("/post")
-    public ResponseEntity addTrip(@Valid @RequestBody DailyTrip dailyTrip) {
-        dailyTripService.addDailyTrip(dailyTrip);
-        return ResponseEntity.status(201).body("Daily Trip added successfully");
-    }
 
     @PutMapping("/update/{id}")
     public ResponseEntity updateTrip(@PathVariable int id, @Valid @RequestBody DailyTrip dailyTrip) {

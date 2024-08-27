@@ -1,6 +1,5 @@
 package com.example.capstone3.Controller;
 
-import com.example.capstone3.Api.ApiResponse;
 import com.example.capstone3.Model.Review;
 import com.example.capstone3.Service.ReviewService;
 import jakarta.validation.Valid;
@@ -24,18 +23,25 @@ public class ReviewController {
     public ResponseEntity addReview(@Valid@RequestBody Review review)
     {
         reviewService.addReview(review);
-        return ResponseEntity.status(200).body(new ApiResponse("Review added"));
+        return ResponseEntity.status(200).body("Review added");
     }
     @PutMapping("/update/{id}")
     public ResponseEntity updateReview(@PathVariable Integer id,@Valid@RequestBody Review review)
     {
         reviewService.updateReview(id, review);
-        return ResponseEntity.status(200).body(new ApiResponse("Review updated"));
+        return ResponseEntity.status(200).body("Review updated");
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteReview(@PathVariable Integer id)
     {
         reviewService.deleteReview(id);
-        return ResponseEntity.status(200).body(new ApiResponse("Review deleted"));
+        return ResponseEntity.status(200).body("Review deleted");
+    }
+
+    @DeleteMapping("/delete-by-comment/{comment}")
+    public ResponseEntity deleteByComment(@PathVariable String comment)
+    {
+        reviewService.deleteByComment(comment);
+        return ResponseEntity.status(200).body("Comment deleted");
     }
 }

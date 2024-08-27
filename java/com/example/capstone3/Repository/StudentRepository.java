@@ -4,8 +4,15 @@ import com.example.capstone3.Model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface StudentRepository extends JpaRepository<Student,Integer> {
+import java.util.List;
 
-    Student findStudentById(Integer id);
+@Repository
+
+public interface StudentRepository extends JpaRepository<Student, Integer> {
+
+    Student findStudentById(int id);
+
+    List<Student> findStudentByAcademicLevel(String academicLevel);
+
+    List<Student> findStudentByGender(String gender);
 }
